@@ -1,13 +1,7 @@
-import { loadEnvConfig } from "@next/env";
 import { Output } from "kanel";
 import { makeKyselyHook } from "kanel-kysely";
 import { camelCase } from "lodash-es";
 import { serverEnv } from "./env/server";
-import invariant from "tiny-invariant";
-
-const projectDir = process.cwd();
-
-loadEnvConfig(projectDir, true);
 
 const camelCaseHook = (output: Output): Output =>
   Object.fromEntries(
@@ -130,9 +124,9 @@ const fixNumeric = (path: string, lines: string[]) => {
 };
 
 export default {
-  connection: process.env.DATABASE_URL,
+  connection: serverEnv.DATABASE_URL,
   preDeleteOutputFolder: true,
-  outputPath: "./lib/db/schemas",
+  outputPath: "./db/schemas",
   customTypeMap: {
     "pg_catalog.tsvector": "string",
     "pg_catalog.bpchar": "string",

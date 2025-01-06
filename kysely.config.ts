@@ -11,4 +11,7 @@ export default defineConfig({
       connectionString: serverEnv.DATABASE_URL,
     }),
   }),
+  migrations: {
+    migrationFolder: "./db/migrations",
+  },
 });
