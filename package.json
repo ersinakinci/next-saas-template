@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate:latest": "kysely-ctl migrate:latest",
-    "db:migrate:make": "kysely-ctl migrate:make",
-    "db:migrate:up": "kysely-ctl migrate:up",
-    "db:migrate:down": "kysely-ctl migrate:down",
+    "db:migrate:latest": "kysely migrate:latest",
+    "db:migrate:make": "kysely migrate:make",
+    "db:migrate:up": "kysely migrate:up",
+    "db:migrate:down": "kysely migrate:down",
     "db:typegen": "tsx ./scripts/generate-db-types.ts"
   },
   "dependencies": {
