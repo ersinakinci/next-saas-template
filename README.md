@@ -28,7 +28,12 @@ npm run dev
   - ID generation: [Nano ID](https://github.com/ai/nanoid)
 - 🔑 Authentication: [Auth.js](https://authjs.dev/)
 - 💰 Payments: [Stripe](https://stripe.com)
+  - Two subscription tiers: `free` and `pro`
 - 🚀 Deployment: [Vercel](https://vercel.com)
+
+### Utils
+
+- [tiny-invariant](https://github.com/alexreardon/tiny-invariant)
 
 ## Configuration
 
