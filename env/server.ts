@@ -16,6 +16,8 @@ loadEnvConfig(process.cwd());
 export const serverEnv = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
+    EMAIL_OCTOPUS_API_KEY: z.string(),
+    EMAIL_OCTOPUS_USERS_LIST_ID: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
     POSTHOG_API_KEY: z.string(),
   },
