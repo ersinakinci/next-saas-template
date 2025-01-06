@@ -19,6 +19,8 @@ npm run dev
 
 - 🧱 Framework: [Next.js](https://nextjs.org)
 - 🎨 CSS: [Tailwind CSS](https://tailwindcss.com)
+  - [Typography](https://tailwindcss.com/docs/typography-plugin)
+  - [Animate](https://tailwindcss.com/docs/animate-plugin)
 - 🖱️ UI: [Shadcn UI](https://ui.shadcn.com)
 - ⭐️ Icons: [Lucide](https://lucide.dev)
 - 🗄️ Database: [Postgres](https://www.postgresql.org)
@@ -33,12 +35,14 @@ npm run dev
 - 📧 Email
   - Marketing: [EmailOctopus](https://emailoctopus.com)
   - Transactional: [Resend](https://resend.com)
+- 📄 CMS: [Builder.io](https://builder.io)
 - 🚀 Deployment: [Vercel](https://vercel.com)
 
 ### Utils
 
 - [date-fns](https://github.com/date-fns/date-fns)
 - [date-fns-utc](https://github.com/date-fns/utc)
+- [fetch-retry](https://github.com/sindresorhus/fetch-retry)
 - [lodash-es](https://github.com/lodash/lodash)
 - [tiny-invariant](https://github.com/alexreardon/tiny-invariant)
 
@@ -50,6 +54,13 @@ npm run dev
 - `DATABASE_URL` - The URL of the database to use. Example: `postgresql://postgres:postgres@localhost:5432/postgres`.
 - `EMAIL_OCTOPUS_API_KEY` - The API key for the EmailOctopus API.
 - `EMAIL_OCTOPUS_USERS_LIST_ID` - The ID of the users list in EmailOctopus.
+- `NEXT_PUBLIC_BUILDER_API_KEY` - The API key for the Builder.io CMS.
+- `NEXT_PUBLIC_POSTHOG_HOST` - The host for the PostHog API
+  - EU (for GDPR compliance): `https://eu.i.posthog.com`
+  - US: `https://us.i.posthog.com`
+- `NEXT_PUBLIC_POSTHOG_KEY` - The API key for the PostHog API.
+- `NODE_ENV` - The environment to use (`development`, `test`, or `production`).
+- `POSTHOG_API_KEY` - The API key for the PostHog API.
 
 ### Database
 
