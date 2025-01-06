@@ -14,8 +14,10 @@
     "db:typegen": "tsx ./scripts/generate-db-types.ts"
   },
   "dependencies": {
+    "@date-fns/utc": "^2.1.0",
     "@t3-oss/env-nextjs": "^0.11.1",
     "bignumber.js": "^9.1.2",
+    "date-fns": "^4.1.0",
     "kanel-kysely": "^0.6.0",
     "kysely": "^0.27.5",
     "lodash-es": "^4.17.21",
