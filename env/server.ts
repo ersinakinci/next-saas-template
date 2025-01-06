@@ -17,6 +17,7 @@ export const serverEnv = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "test", "production"]),
+    POSTHOG_API_KEY: z.string(),
   },
   experimental__runtimeEnv: process.env,
 });
