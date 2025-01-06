@@ -6,14 +6,14 @@ import {
   MigrationProvider,
   Migration,
 } from "kysely";
-import Database from "../db/schemas/Database";
+import Database from "./schemas/Database";
 import PG from "pg";
 import { BigNumber } from "bignumber.js";
 import { format } from "sql-formatter";
 import { Migrator } from "kysely";
 import fs from "fs";
 import path from "path";
-import { serverEnv } from "../env/server";
+import { serverEnv } from "../../env/server";
 
 export type DB = Kysely<Database>;
 export type DBClient = Kysely<Database> | Transaction<Database>;

@@ -17,6 +17,8 @@ export default interface UserTable {
 
   image: ColumnType<string | null, string | null, string | null>;
 
+  onboarding: ColumnType<unknown, unknown | undefined, unknown>;
+
   createdAt: ColumnType<Date, Date | string | undefined, Date | string>;
 
   updatedAt: ColumnType<Date, Date | string | undefined, Date | string>;

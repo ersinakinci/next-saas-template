@@ -13,6 +13,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn("email", "text", (col) => col.unique().notNull())
     .addColumn("email_verified", "timestamptz")
     .addColumn("image", "text")
+    .addColumn("onboarding", "jsonb", (col) => col.notNull().defaultTo("{}"))
     .addColumn("created_at", "timestamptz", (col) =>
       col.defaultTo(sql`now()`).notNull()
     )
