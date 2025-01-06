@@ -17,17 +17,18 @@ npm run dev
 
 ## Features
 
-- ✅ Framework: [Next.js](https://nextjs.org)
-- ✅ CSS: [Tailwind CSS](https://tailwindcss.com)
-- ✅ UI: [Shadcn UI](https://ui.shadcn.com)
-- ✅ Icons: [Lucide](https://lucide.dev)
-- ✅ Database: [Postgres](https://www.postgresql.org)
-- ✅ Database client: [Kysely](https://kysely.dev)
-- ✅ Database migrations: [Kysely-ctl](https://github.com/kysely-org/kysely-ctl)
-- ✅ Database typegen: [Kanel](https://github.com/kysely-org/kanel)
-- ✅ Authentication: [Auth.js](https://authjs.dev/)
-- ✅ Payments: [Stripe](https://stripe.com)
-- ✅ Deployment: [Vercel](https://vercel.com)
+- 🧱 Framework: [Next.js](https://nextjs.org)
+- 🎨 CSS: [Tailwind CSS](https://tailwindcss.com)
+- 🖱️ UI: [Shadcn UI](https://ui.shadcn.com)
+- ⭐️ Icons: [Lucide](https://lucide.dev)
+- 🗄️ Database: [Postgres](https://www.postgresql.org)
+  - Client: [Kysely](https://kysely.dev)
+  - Migrations: [Kysely-ctl](https://github.com/kysely-org/kysely-ctl)
+  - Typegen: [Kanel](https://github.com/kysely-org/kanel)
+  - ID generation: [Nano ID](https://github.com/ai/nanoid)
+- 🔑 Authentication: [Auth.js](https://authjs.dev/)
+- 💰 Payments: [Stripe](https://stripe.com)
+- 🚀 Deployment: [Vercel](https://vercel.com)
 
 ## Configuration
 
@@ -35,3 +36,9 @@ npm run dev
 
 - `AUTH_SECRET` - The secret to use for authentication. Generate with `npx auth secret`.
 - `DATABASE_URL` - The URL of the database to use. Example: `postgresql://postgres:postgres@localhost:5432/postgres`.
+
+### Database
+
+- Create your Postgres database, add the `DATABASE_URL` to your `.env.local` file (see above).
+- Run `npm run db:migrate:latest` to create the database schema.
+- Run `npm run db:typegen` to generate the database types.
