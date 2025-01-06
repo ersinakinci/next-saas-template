@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate:latest": "kysely-ctl migrate:latest",
+    "db:migrate:make": "kysely-ctl migrate:make",
+    "db:migrate:up": "kysely-ctl migrate:up",
+    "db:migrate:down": "kysely-ctl migrate:down",
+    "db:typegen": "tsx ./scripts/generate-db-types.ts"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.11.1",
