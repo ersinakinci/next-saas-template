@@ -1,7 +1,7 @@
 import { defineConfig } from "kysely-ctl";
 import { PostgresDialect } from "kysely";
 import pg from "pg";
-import { serverEnv } from "./lib/env/server";
+import { serverEnv } from "./env/server";
 
 const { Pool } = pg;
 
