@@ -1,4 +1,4 @@
-import NextAuth, { DefaultSession } from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import Resend from "next-auth/providers/resend";
 import Credentials from "next-auth/providers/credentials";
 import { KyselyAdapter } from "@/services/auth/kysely-adapter";
@@ -12,47 +12,13 @@ import { emailOctopus } from "@/services/email-octopus";
 import { getLastEntity } from "@/services/db/helpers/get-last-entity";
 import { UserId } from "@/services/db/schemas/public/User";
 import { Provider } from "@auth/core/providers";
-import {
-  UserOnboardingSchema,
-  userOnboardingSchema,
-} from "@/schemas/schema.user-onboarding";
-import { EntityId } from "@/services/db/schemas/public/Entity";
-import Google from "next-auth/providers/google";
-
-declare module "@auth/core" {
-  interface User {
-    id: UserId;
-    email: string;
-    image: string;
-    onboarding: unknown;
-  }
-}
-
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: UserId;
-      entities: { id: EntityId; name: string }[];
-      currentEntityId: EntityId;
-      onboarding: UserOnboardingSchema;
-    } & DefaultSession["user"];
-  }
-}
-
-declare module "@auth/core/jwt" {
-  interface JWT {
-    entities: { id: EntityId }[];
-    currentEntityId: EntityId;
-    onboarding: UserOnboardingSchema;
-  }
-}
+import { userOnboardingSchema } from "@/schemas/schema.user-onboarding";
+import { edgeConfig } from "./edge-config";
 
 const adapter = KyselyAdapter(db);
 
 const providers: Provider[] = [
-  Google({
-    allowDangerousEmailAccountLinking: true,
-  }),
+  ...edgeConfig.providers,
   Resend({
     from: serverEnv.AUTH_FROM_EMAIL,
     apiKey: serverEnv.RESEND_API_KEY,
@@ -99,7 +65,7 @@ export const providerMap = providers.map((provider) => {
   }
 });
 
-export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
+export const authConfig = {
   adapter,
   session: { strategy: "jwt" },
   callbacks: {
@@ -198,11 +164,7 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
     },
   },
   providers,
-  pages: {
-    signIn: "/sign-in",
-    signOut: "/sign-out",
-    error: "/sign-in",
-    verifyRequest: "/sign-in/verify",
-    newUser: "/app/onboarding",
-  },
-});
+} satisfies NextAuthConfig;
+
+export const { handlers, signIn, signOut, auth, unstable_update } =
+  NextAuth(authConfig);
