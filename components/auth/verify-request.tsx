@@ -15,7 +15,7 @@ export const VerifyRequest = ({
         <div className="flex flex-col items-center gap-2">
           <Link
             href="/"
-            className="flex flex-col items-center gap-2 font-medium text-current"
+            className="flex flex-col items-center gap-2 font-medium"
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-md">
               <GalleryVerticalEnd className="size-6" />
@@ -34,7 +34,7 @@ export const VerifyRequest = ({
           </p>
         </div>
 
-        <Link href="/sign-in" className="text-current">
+        <Link href="/sign-in">
           <Button variant="outline" className="w-full">
             Back to sign in
           </Button>

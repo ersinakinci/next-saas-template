@@ -16,7 +16,9 @@
   "dependencies": {
     "@builder.io/react": "^8.0.2",
     "@date-fns/utc": "^2.1.0",
+    "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-label": "^2.1.1",
+    "@radix-ui/react-navigation-menu": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.1",
     "@stripe/stripe-js": "^5.4.0",
     "@t3-oss/env-nextjs": "^0.11.1",

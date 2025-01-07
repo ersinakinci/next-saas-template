@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="prose mx-auto mt-24">
-      <h1>Welcome to Ersin's SaaS template</h1>
+    <main className="prose mx-auto mt-24 px-8">
+      <h1>Welcome to Acme Inc.</h1>
       <p>
         <Link href="https://github.com/ersinakinci/next-saas-template">
           Documentation

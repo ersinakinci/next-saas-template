@@ -86,8 +86,4 @@ root {
   body {
     @apply bg-background text-foreground;
   }
-
-  a {
-    color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
-  }
 }
