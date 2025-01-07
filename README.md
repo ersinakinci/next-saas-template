@@ -15,6 +15,11 @@ Follow the instructions in the [Configuration](#configuration) section, and then
 npm run dev
 ```
 
+## What makes it special?
+
+- Fully-functional Stripe integration. This is tough to get right and is usually an afterthought in other SaaS templates.
+- Actually used in production for a real-life SaaS: [Max Deduct](https://www.maxdeduct.com)
+
 ## Features
 
 - 🧱 Framework: [Next.js](https://nextjs.org)
@@ -92,3 +97,12 @@ You'll need to set the following environment variables in your `.env.local` file
 - Create your Postgres database, add the `DATABASE_URL` to your `.env.local` file (see above).
 - Run `npm run db:migrate:latest` to create the database schema.
 - Run `npm run db:typegen` to generate the database types.
+
+## TODO
+
+- [ ] Docs
+- [ ] Better error handling
+- [ ] Testing
+- [ ] App shell
+- [ ] Navigation
+- [ ] React Query
