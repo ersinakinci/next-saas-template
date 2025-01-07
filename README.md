@@ -48,19 +48,41 @@ npm run dev
 
 ## Configuration
 
+### Prerequisites
+
+- You'll need to have a Postgres database set up.
+- Third-party services:
+  - [EmailOctopus](https://emailoctopus.com)
+  - [Google API](https://console.cloud.google.com)
+  - [PostHog](https://posthog.com)
+  - [Resend](https://resend.com)
+  - [Stripe](https://stripe.com)
+
 ### Environment variables
 
-- `AUTH_SECRET` - The secret to use for authentication. Generate with `npx auth secret`.
-- `DATABASE_URL` - The URL of the database to use. Example: `postgresql://postgres:postgres@localhost:5432/postgres`.
-- `EMAIL_OCTOPUS_API_KEY` - The API key for the EmailOctopus API.
-- `EMAIL_OCTOPUS_USERS_LIST_ID` - The ID of the users list in EmailOctopus.
-- `NEXT_PUBLIC_BUILDER_API_KEY` - The API key for the Builder.io CMS.
-- `NEXT_PUBLIC_POSTHOG_HOST` - The host for the PostHog API
+You'll need to set the following environment variables in your `.env.local` file before running the app:
+
+- `AUTH_FROM_EMAIL`: The email address to use for sending email authentication signin links.
+  - Example: `noreply@acme.com`
+- `AUTH_GOOGLE_ID`: The Google API client ID, for signing in with Google.
+- `AUTH_GOOGLE_SECRET`: The Google API client secret, for signing in with Google.
+- `AUTH_SECRET`: The secret to use for authentication.
+  - Generate with `npx auth secret`
+- `AUTH_URL`: The base URL of your website, used for authentication links.
+  - Example: `https://www.acme.com`
+- `DATABASE_URL`: The URL of the database to use.
+  - Example: `postgresql://postgres:postgres@localhost:5432/postgres`
+- `EMAIL_OCTOPUS_API_KEY`: The API key for the EmailOctopus API.
+- `EMAIL_OCTOPUS_USERS_LIST_ID`: The ID of the users list in EmailOctopus.
+- `NEXT_PUBLIC_BUILDER_API_KEY`: The API key for the Builder.io CMS.
+- `NEXT_PUBLIC_POSTHOG_HOST`: The host for the PostHog API
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`
-- `NEXT_PUBLIC_POSTHOG_KEY` - The API key for the PostHog API.
-- `NODE_ENV` - The environment to use (`development`, `test`, or `production`).
-- `POSTHOG_API_KEY` - The API key for the PostHog API.
+- `NEXT_PUBLIC_POSTHOG_KEY`: The API key for the PostHog API.
+- `NODE_ENV`: The environment to use (`development`, `test`, or `production`).
+  - Use `development` for local development.
+- `POSTHOG_API_KEY`: The API key for the PostHog API.
+- `RESEND_API_KEY`: The API key for the Resend API.
 
 ### Database
 
