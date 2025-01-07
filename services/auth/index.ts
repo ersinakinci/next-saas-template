@@ -66,6 +66,7 @@ export const providerMap = providers.map((provider) => {
 });
 
 export const authConfig = {
+  ...edgeConfig,
   adapter,
   session: { strategy: "jwt" },
   callbacks: {
