@@ -15,10 +15,15 @@ loadEnvConfig(process.cwd());
 // Add your server env variables here
 export const serverEnv = createEnv({
   server: {
+    AUTH_FROM_EMAIL: z.string(),
+    AUTH_GOOGLE_ID: z.string(),
+    AUTH_GOOGLE_SECRET: z.string(),
+    AUTH_SECRET: z.string(),
     DATABASE_URL: z.string().url(),
     EMAIL_OCTOPUS_API_KEY: z.string(),
     EMAIL_OCTOPUS_USERS_LIST_ID: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
+    RESEND_API_KEY: z.string(),
     POSTHOG_API_KEY: z.string(),
   },
   experimental__runtimeEnv: process.env,

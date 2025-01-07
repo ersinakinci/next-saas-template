@@ -54,12 +54,13 @@ const providers: Provider[] = [
     allowDangerousEmailAccountLinking: true,
   }),
   Resend({
-    from: "ersin@maxdeduct.com",
+    from: serverEnv.AUTH_FROM_EMAIL,
+    apiKey: serverEnv.RESEND_API_KEY,
   }),
 ];
 
+// Use credentials provider in development to make it easier to test
 if (serverEnv.NODE_ENV === "development") {
-  // Only use in development
   const credentialsProvider = Credentials({
     credentials: {
       email: { label: "Email" },
@@ -88,6 +89,15 @@ if (serverEnv.NODE_ENV === "development") {
 
   providers.push(credentialsProvider);
 }
+
+export const providerMap = providers.map((provider) => {
+  if (typeof provider === "function") {
+    const providerData = provider();
+    return { id: providerData.id, name: providerData.name };
+  } else {
+    return { id: provider.id, name: provider.name };
+  }
+});
 
 export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
   adapter,
@@ -188,4 +198,11 @@ export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
     },
   },
   providers,
+  pages: {
+    signIn: "/sign-in",
+    signOut: "/sign-out",
+    error: "/sign-in",
+    verifyRequest: "/sign-in/verify",
+    newUser: "/app/onboarding",
+  },
 });

@@ -13,6 +13,14 @@ export default function Home() {
       <h2>Next steps</h2>
       <ul>
         <li>Create a new home page in Builder.io and delete this page.</li>
+        <li>
+          Add <Link href="/terms-of-service">terms of service</Link> and{" "}
+          <Link href="/privacy-policy">privacy policy</Link> pages.
+        </li>
+        <li>
+          Search for <code>Acme Inc.</code> and replace it with your company
+          name.
+        </li>
       </ul>
     </main>
   );
