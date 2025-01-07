@@ -54,6 +54,5 @@ export const edgeConfig = {
     signOut: "/sign-out",
     error: "/sign-in",
     verifyRequest: "/sign-in/verify",
-    newUser: "/app/onboarding",
   },
 } satisfies NextAuthConfig;
