@@ -7,10 +7,13 @@ export const clientEnv = createEnv({
     NEXT_PUBLIC_POSTHOG_KEY: z.string().min(1),
     NEXT_PUBLIC_POSTHOG_HOST: z.string().min(1),
     NEXT_PUBLIC_BUILDER_API_KEY: z.string().min(1),
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().min(1),
   },
   runtimeEnv: {
     NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
     NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     NEXT_PUBLIC_BUILDER_API_KEY: process.env.NEXT_PUBLIC_BUILDER_API_KEY,
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
   },
 });

@@ -1,6 +1,6 @@
 # Baby's first Next.js SaaS template 👶🍼💰
 
-> Use this one weird trick to get your SaaS off the ground
+> This is my Next.js SaaS template. There are many like it, but this one is mine.
 
 ## Getting started
 
@@ -79,10 +79,13 @@ You'll need to set the following environment variables in your `.env.local` file
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`
 - `NEXT_PUBLIC_POSTHOG_KEY`: The API key for the PostHog API.
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: The publishable key for the Stripe API.
 - `NODE_ENV`: The environment to use (`development`, `test`, or `production`).
   - Use `development` for local development.
 - `POSTHOG_API_KEY`: The API key for the PostHog API.
 - `RESEND_API_KEY`: The API key for the Resend API.
+- `STRIPE_ENDPOINT_SECRET`: The endpoint secret for the Stripe webhook.
+- `STRIPE_SECRET_KEY`: The secret key for the Stripe API.
 
 ### Database
 

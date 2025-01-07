@@ -25,6 +25,8 @@ export const serverEnv = createEnv({
     NODE_ENV: z.enum(["development", "test", "production"]),
     RESEND_API_KEY: z.string(),
     POSTHOG_API_KEY: z.string(),
+    STRIPE_SECRET_KEY: z.string().min(1),
+    STRIPE_ENDPOINT_SECRET: z.string().min(1),
   },
   experimental__runtimeEnv: process.env,
 });
