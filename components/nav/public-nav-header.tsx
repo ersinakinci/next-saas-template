@@ -90,8 +90,12 @@ export function PublicNavHeader() {
                   ))}
                   <div className="flex flex-col gap-3 pt-8">
                     {session ? (
-                      <MobileLink href="/app" onOpenChange={setIsOpen}>
-                        Back to app <ArrowRight className="ml-1 w-4 h-4" />
+                      <MobileLink
+                        href="/app"
+                        onOpenChange={setIsOpen}
+                        className="flex items-center gap-1"
+                      >
+                        Back to app <ArrowRight className="w-4 h-4" />
                       </MobileLink>
                     ) : (
                       <>
@@ -134,7 +138,7 @@ export function PublicNavHeader() {
               href="/app"
               onClick={() => setIsOpen(false)}
             >
-              Back to app <ArrowRight className="ml-1 w-4 h-4" />
+              Back to app <ArrowRight className="w-4 h-4" />
             </Link>
           ) : (
             <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-2 w-fit">
