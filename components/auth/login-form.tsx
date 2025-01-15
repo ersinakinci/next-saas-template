@@ -84,7 +84,7 @@ export function LoginForm({
 
             try {
               if (serverEnv.NODE_ENV === "development") {
-                await signIn("resend", data);
+                await signIn("credentials", data);
               } else {
                 await signIn("resend", data);
               }
