@@ -29,6 +29,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "fetch-retry": "^6.0.0",
+    "immer": "^10.1.1",
     "kanel-kysely": "^0.6.0",
     "kysely": "^0.27.5",
     "lodash-es": "^4.17.21",
