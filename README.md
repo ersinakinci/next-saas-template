@@ -33,6 +33,7 @@ npm run dev
   - Migrations: [Kysely-ctl](https://github.com/kysely-org/kysely-ctl)
   - Typegen: [Kanel](https://github.com/kysely-org/kanel)
   - ID generation: [Nano ID](https://github.com/ai/nanoid)
+- 🔁 Queries/mutations: [React Query](https://tanstack.com/query)
 - 🔑 Authentication: [Auth.js](https://authjs.dev/)
 - 💰 Payments: [Stripe](https://stripe.com)
   - Two subscription tiers: `free` and `pro`
