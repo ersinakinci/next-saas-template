@@ -131,6 +131,8 @@ export default {
     "pg_catalog.tsvector": "string",
     "pg_catalog.bpchar": "string",
     "pg_catalog.date": "string",
+    "pg_catalog.timestamp": "string",
+    "pg_catalog.timestamptz": "string",
     "pg_catalog.numeric": {
       name: "NumericPlaceholder",
       // typeImports: [
