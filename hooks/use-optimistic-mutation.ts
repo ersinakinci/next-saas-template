@@ -3,11 +3,12 @@ import { QueryClient } from "@tanstack/react-query";
 import { useToast } from "./use-toast";
 import { ActionFunction } from "../types/action-function";
 import { Draft, produce } from "immer";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 export const useOptimisticMutation = <
   U,
   P,
-  D = Awaited<ReturnType<ActionFunction>>,
+  D = Awaited<ReturnType<ActionFunction>>
 >({
   queryClient,
   queryKey,
@@ -58,7 +59,10 @@ export const useOptimisticMutation = <
       }
     },
 
-    onError: (_error, _variables, context) => {
+    onError: (error, _variables, context) => {
+      // Skip redirect errors, they're not actual errors.
+      if (isRedirectError(error)) return;
+
       toast({
         title: "Oops, something went wrong",
         description: "Please try again later",
