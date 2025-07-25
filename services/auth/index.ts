@@ -8,7 +8,7 @@ import invariant from "tiny-invariant";
 import { UTCDateMini } from "@date-fns/utc";
 import { getUserTier } from "@/services/db/helpers/get-user-tier";
 import { serverEnv } from "@/env/server";
-import { emailOctopus } from "@/services/email-octopus";
+import { emailMarketing } from "@/services/email-marketing.server";
 import { getLastEntity } from "@/services/db/helpers/get-last-entity";
 import { UserId } from "@/services/db/schemas/public/User";
 import { Provider } from "@auth/core/providers";
@@ -128,17 +128,16 @@ export const authConfig = {
       const tier = await getUserTier(db, user.id as UserId);
 
       if (serverEnv.NODE_ENV === "production" && isNewUser) {
-        // Subscribe to the email list via EmailOctopus
-        await emailOctopus(
-          `/lists/${serverEnv.EMAIL_OCTOPUS_USERS_LIST_ID}/contacts`,
+        invariant(serverEnv.LOOPS_USERS_LIST_ID);
+
+        // Subscribe to the email list
+        await emailMarketing.createContact(
+          user.email,
           {
-            email_address: user.email,
-            fields: {
-              Name: user.name ?? undefined,
-              Tier: tier,
-            },
-            status: "SUBSCRIBED",
-          }
+            name: user.name ?? null,
+            tier,
+          },
+          { [serverEnv.LOOPS_USERS_LIST_ID]: true }
         );
       }
 

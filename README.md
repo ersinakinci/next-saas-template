@@ -40,7 +40,7 @@ npm run dev
 - 📈 Analytics: [PostHog](https://posthog.com)
 - 🪵 Logging: [tslog](https://tslog.js.org)
 - 📧 Email
-  - Marketing: [EmailOctopus](https://emailoctopus.com)
+  - Marketing: [Loops](https://loops.so)
   - Transactional: [Resend](https://resend.com)
 - 🚀 Deployment: [Vercel](https://vercel.com)
 
@@ -58,7 +58,7 @@ npm run dev
 
 - You'll need to have a Postgres database set up.
 - Third-party services:
-  - [EmailOctopus](https://emailoctopus.com)
+  - [Loops](https://loops.so)
   - [Google API](https://console.cloud.google.com)
   - [PostHog](https://posthog.com)
   - [Resend](https://resend.com)
@@ -78,8 +78,8 @@ You'll need to set the following environment variables in your `.env.local` file
   - Example: `https://www.acme.com`
 - `DATABASE_URL`: The URL of the database to use.
   - Example: `postgresql://postgres:postgres@localhost:5432/postgres`
-- `EMAIL_OCTOPUS_API_KEY`: The API key for the EmailOctopus API.
-- `EMAIL_OCTOPUS_USERS_LIST_ID`: The ID of the users list in EmailOctopus.
+- `EMAIL_OCTOPUS_API_KEY`: The API key for the Loops API.
+- `LOOPS_OCTOPUS_USERS_LIST_ID`: The ID of the users list in Loops.
 - `NEXT_PUBLIC_POSTHOG_HOST`: The host for the PostHog API
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`
