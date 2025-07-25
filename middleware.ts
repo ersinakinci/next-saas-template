@@ -8,9 +8,9 @@ const middleware = NextAuth(edgeConfig).auth(async (req) => {
     (req.nextUrl.pathname.startsWith("/app") ||
       req.nextUrl.pathname.match(/^\/api\/(?!auth|stripe).*/))
   ) {
-    const loginUrl = new URL("/sign-in", req.url);
+    const signInUrl = new URL("/sign-in", req.url);
 
-    return NextResponse.redirect(loginUrl);
+    return NextResponse.redirect(signInUrl);
   }
 
   return NextResponse.next();

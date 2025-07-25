@@ -71,7 +71,7 @@ export const authConfig = {
   session: { strategy: "jwt" },
   callbacks: {
     authorized: async ({ auth }) => {
-      // Logged in users are authenticated, otherwise redirect to login page
+      // Logged in users are authenticated, otherwise redirect to sign in page
       return !!auth;
     },
     async jwt({ token, user, trigger, session }) {

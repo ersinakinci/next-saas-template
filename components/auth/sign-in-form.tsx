@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { providerMap, signIn } from "@/services/auth";
 import { serverEnv } from "@/env/server";
 
-export function LoginForm({
+export function SignInForm({
   className,
   callbackUrl,
   error,
@@ -29,7 +29,7 @@ export function LoginForm({
             <ShieldAlert className="size-12" />
             <div className="flex flex-col gap-2">
               <p className="text-sm font-semibold">
-                There was an error logging in.
+                There was an error signing in.
               </p>
               <p className="text-sm">
                 Please try again or contact support if the problem persists.
@@ -107,7 +107,7 @@ export function LoginForm({
             />
           </div>
           <Button type="submit" className="w-full">
-            Login
+            Sign in
           </Button>
         </form>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
