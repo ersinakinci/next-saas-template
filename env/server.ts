@@ -12,21 +12,24 @@ import { loadEnvConfig } from "@next/env";
 // time here, but it's not clear.
 loadEnvConfig(process.cwd());
 
+const devOptional = <T extends z.ZodTypeAny>(schema: T) =>
+  process.env.NODE_ENV === "development" ? schema.optional() : schema;
+
 // Add your server env variables here
 export const serverEnv = createEnv({
   server: {
-    AUTH_FROM_EMAIL: z.string(),
-    AUTH_GOOGLE_ID: z.string(),
-    AUTH_GOOGLE_SECRET: z.string(),
+    AUTH_FROM_EMAIL: z.email(),
+    AUTH_GOOGLE_ID: z.string().optional(),
+    AUTH_GOOGLE_SECRET: z.string().optional(),
     AUTH_SECRET: z.string(),
     DATABASE_URL: z.string().url(),
     EMAIL_OCTOPUS_API_KEY: z.string(),
     EMAIL_OCTOPUS_USERS_LIST_ID: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
-    RESEND_API_KEY: z.string(),
-    POSTHOG_API_KEY: z.string(),
-    STRIPE_SECRET_KEY: z.string().min(1),
-    STRIPE_ENDPOINT_SECRET: z.string().min(1),
+    RESEND_API_KEY: devOptional(z.string()),
+    POSTHOG_API_KEY: devOptional(z.string()),
+    STRIPE_SECRET_KEY: devOptional(z.string().min(1)),
+    STRIPE_ENDPOINT_SECRET: devOptional(z.string().min(1)),
   },
   experimental__runtimeEnv: process.env,
 });

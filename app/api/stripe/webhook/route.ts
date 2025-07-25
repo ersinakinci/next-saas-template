@@ -44,8 +44,10 @@ const deleteSubscription = async (db: DBClient, subscription: Subscription) => {
 };
 
 export async function POST(request: NextRequest) {
-  if (serverEnv.NODE_ENV !== "production")
-    logger.info(`Received Stripe webhook event`);
+  logger.debug(`Received Stripe webhook event`);
+
+  invariant(serverEnv.STRIPE_ENDPOINT_SECRET);
+
   const sig = request.headers.get("stripe-signature");
 
   if (!sig) {
