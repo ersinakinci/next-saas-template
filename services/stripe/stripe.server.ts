@@ -6,7 +6,7 @@ import { serverEnv } from "@/env/server";
 const httpClient = Stripe.createFetchHttpClient();
 
 export const stripe = new Stripe(serverEnv.STRIPE_SECRET_KEY, {
-  apiVersion: "2024-12-18.acacia",
+  apiVersion: "2025-06-30.basil",
   typescript: true,
   httpClient,
 });
