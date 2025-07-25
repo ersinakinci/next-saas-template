@@ -4,6 +4,7 @@ import { useToast } from "./use-toast";
 import { ActionFunction } from "../types/action-function";
 import { Draft, produce } from "immer";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { logger } from "@/services/logger";
 
 export const useOptimisticMutation = <
   U,
@@ -42,7 +43,7 @@ export const useOptimisticMutation = <
       const previousData = queryClient.getQueryData<P>(queryKey);
 
       if (previousData === undefined) {
-        console.error("No previous data found for query key", queryKey);
+        logger.error("No previous data found for query key", queryKey);
       } else if (optimisticUpdateFn) {
         queryClient.setQueryData(
           queryKey,

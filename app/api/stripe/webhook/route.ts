@@ -9,6 +9,7 @@ import { posthog } from "@/services/posthog";
 import { serverEnv } from "@/env/server";
 import { NextRequest } from "next/server";
 import { Subscription } from "@/services/db/schemas/public/Subscription";
+import { logger } from "@/services/logger";
 
 const isStripeSubscription = (
   object: string | Stripe.Subscription | null
@@ -44,7 +45,7 @@ const deleteSubscription = async (db: DBClient, subscription: Subscription) => {
 
 export async function POST(request: NextRequest) {
   if (serverEnv.NODE_ENV !== "production")
-    console.log(`Received Stripe webhook event`);
+    logger.info(`Received Stripe webhook event`);
   const sig = request.headers.get("stripe-signature");
 
   if (!sig) {
@@ -89,7 +90,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (serverEnv.NODE_ENV !== "production")
-    console.log(`Processing Stripe ${event.type} event`);
+    logger.debug(`Processing Stripe ${event.type} event`);
 
   // Begin processing the event.
   await db.transaction().execute(async (trx) => {
@@ -121,7 +122,7 @@ export async function POST(request: NextRequest) {
               .returning("id")
               .executeTakeFirstOrThrow();
 
-            console.log(
+            logger.debug(
               "customer.created newly created subscription",
               subscription
             );
@@ -254,7 +255,7 @@ export async function POST(request: NextRequest) {
                 .returning("id")
                 .executeTakeFirstOrThrow();
 
-              console.log(
+              logger.debug(
                 "customer.subscription.created/customer.subscription.updated newly created subscription",
                 subscription
               );
@@ -375,12 +376,12 @@ export async function POST(request: NextRequest) {
                   .executeTakeFirst()
               : undefined;
 
-          console.log(
+          logger.debug(
             "invoice.paid stripeSubscriptionId",
             stripeSubscriptionId
           );
-          console.log("invoice.paid stripeCustomerId", stripeCustomerId);
-          console.log("invoice.paid pre-existing subscription", subscription);
+          logger.debug("invoice.paid stripeCustomerId", stripeCustomerId);
+          logger.debug("invoice.paid pre-existing subscription", subscription);
 
           if (subscription) {
             await trx
@@ -400,7 +401,7 @@ export async function POST(request: NextRequest) {
               .returning("id")
               .executeTakeFirstOrThrow();
 
-            console.log(
+            logger.debug(
               "invoice.paid newly created subscription",
               subscription
             );
@@ -445,11 +446,11 @@ export async function POST(request: NextRequest) {
 
         default:
           if (serverEnv.NODE_ENV !== "production")
-            console.log(`Unhandled event type: ${event.type}`);
+            logger.error(`Unhandled event type: ${event.type}`);
           break;
       }
     } catch (e) {
-      console.error(e);
+      logger.fatal(e);
       throw e;
     }
   });

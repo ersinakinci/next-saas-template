@@ -3,10 +3,10 @@ import {
   PostgresDialect,
   CamelCasePlugin,
   Transaction,
-  MigrationProvider,
-  Migration,
+  type MigrationProvider,
+  type Migration,
 } from "kysely";
-import Database from "./schemas/Database";
+import type Database from "./schemas/Database";
 import PG from "pg";
 import { BigNumber } from "bignumber.js";
 import { format } from "sql-formatter";
@@ -14,6 +14,7 @@ import { Migrator } from "kysely";
 import fs from "fs";
 import path from "path";
 import { serverEnv } from "../../env/server";
+import { logger } from "../logger";
 
 export type DB = Kysely<Database>;
 export type DBClient = Kysely<Database> | Transaction<Database>;
@@ -30,7 +31,7 @@ PG.types.setTypeParser(1700, "text", (value) =>
   value === null ? null : BigNumber(value).toNumber()
 );
 
-// Map bigint/int8 to number via BigNumber.
+// Map bigint/int8 to BigNumber.
 PG.types.setTypeParser(20, "text", (value) =>
   value === null ? null : BigNumber(value).toNumber()
 );
@@ -48,36 +49,38 @@ export const db = new Kysely<Database>({
       connectionString: serverEnv.DATABASE_URL,
     }),
   }),
-  plugins: [new CamelCasePlugin()],
+  plugins: [
+    new CamelCasePlugin({
+      // Should be OK to disable for kysely >= 0.27.4
+      // https://github.com/kysely-org/kysely/issues/1036
+      // maintainNestedObjectKeys: true,
+    }),
+  ],
   log(event) {
     if (serverEnv.NODE_ENV === "development") {
-      console.log("-----------------");
       if (event.level === "error") {
-        console.error("KYSELY ERROR");
-        console.error(event.error);
-        console.log("Duration (ms):", event.queryDurationMillis);
-        console.log("Params:", event.query.parameters);
-        console.log(
+        logger.error("KYSELY ERROR", event.error);
+        logger.error("Duration (ms):", event.queryDurationMillis);
+        logger.error("Params:", event.query.parameters);
+        logger.error(
           "SQL:\n  ",
           // event.query.sql
           format(event.query.sql, { language: "postgresql" })
         );
       }
       if (event.level === "query") {
-        console.log("KYSELY QUERY");
-        console.log("Duration (ms):", event.queryDurationMillis);
-        console.log("Params:", event.query.parameters);
-        console.log(
+        logger.debug("KYSELY QUERY");
+        logger.debug("Duration (ms):", event.queryDurationMillis);
+        logger.debug("Params:", event.query.parameters);
+        logger.debug(
           "SQL:\n  ",
           format(event.query.sql, { language: "postgresql" })
         );
       }
-      console.log("-----------------");
     }
   },
 });
 
-// Utility function to run a callback within a transaction.
 export const transact = async <T>(
   db: DBClient,
   callback: (trx: Transaction<Database>) => Promise<T>
@@ -131,14 +134,14 @@ export const resetDb = async () => {
   //
   // results?.forEach((it) => {
   //   if (it.status === "Success") {
-  //     console.log(`migration "${it.migrationName}" was executed successfully`);
+  //     logger.info(`migration "${it.migrationName}" was executed successfully`);
   //   } else if (it.status === "Error") {
-  //     console.error(`failed to execute migration "${it.migrationName}"`);
+  //     logger.error(`failed to execute migration "${it.migrationName}"`);
   //   }
   // });
 
   if (error) {
-    console.error("failed to run `migrateToLatest`");
+    logger.fatal("failed to run `migrateToLatest`");
     throw error;
   }
 };
