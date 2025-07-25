@@ -78,8 +78,8 @@ You'll need to set the following environment variables in your `.env.local` file
   - Example: `https://www.acme.com`
 - `DATABASE_URL`: The URL of the database to use.
   - Example: `postgresql://postgres:postgres@localhost:5432/postgres`
-- `EMAIL_OCTOPUS_API_KEY`: The API key for the Loops API.
-- `LOOPS_OCTOPUS_USERS_LIST_ID`: The ID of the users list in Loops.
+- `LOOPS_API_KEY`: The API key for the Loops API.
+- `LOOPS_USERS_LIST_ID`: The ID of the users list in Loops.
 - `NEXT_PUBLIC_POSTHOG_HOST`: The host for the PostHog API
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`
