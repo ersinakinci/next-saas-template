@@ -41,7 +41,6 @@ npm run dev
 - 📧 Email
   - Marketing: [EmailOctopus](https://emailoctopus.com)
   - Transactional: [Resend](https://resend.com)
-- 📄 CMS: [Builder.io](https://builder.io)
 - 🚀 Deployment: [Vercel](https://vercel.com)
 
 ### Utils
@@ -80,7 +79,6 @@ You'll need to set the following environment variables in your `.env.local` file
   - Example: `postgresql://postgres:postgres@localhost:5432/postgres`
 - `EMAIL_OCTOPUS_API_KEY`: The API key for the EmailOctopus API.
 - `EMAIL_OCTOPUS_USERS_LIST_ID`: The ID of the users list in EmailOctopus.
-- `NEXT_PUBLIC_BUILDER_API_KEY`: The API key for the Builder.io CMS.
 - `NEXT_PUBLIC_POSTHOG_HOST`: The host for the PostHog API
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`

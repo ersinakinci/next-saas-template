@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import builderDevTools from "@builder.io/dev-tools/next";
 
 // Import env here to validate during build.
 import { serverEnv } from "./env/server";
@@ -10,10 +9,8 @@ import { clientEnv } from "./env/client";
 const _serverEnv = serverEnv;
 const _clientEnv = clientEnv;
 
-const withBuilderDevTools = builderDevTools({});
-
 const nextConfig: NextConfig = {
   /* config options here */
 };
 
-export default withBuilderDevTools(nextConfig);
+export default nextConfig;
