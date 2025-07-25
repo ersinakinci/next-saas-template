@@ -32,6 +32,7 @@
     "kanel-kysely": "^0.7.1",
     "kysely": "^0.28.3",
     "lodash-es": "^4.17.21",
+    "loops": "^5.0.1",
     "lucide-react": "^0.525.0",
     "next": "15.4.4",
     "next-auth": "^5.0.0-beta.29",
