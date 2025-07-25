@@ -38,6 +38,7 @@ npm run dev
 - 💰 Payments: [Stripe](https://stripe.com)
   - Two subscription tiers: `free` and `pro`
 - 📈 Analytics: [PostHog](https://posthog.com)
+- 🪵 Logging: [tslog](https://tslog.js.org)
 - 📧 Email
   - Marketing: [EmailOctopus](https://emailoctopus.com)
   - Transactional: [Resend](https://resend.com)
