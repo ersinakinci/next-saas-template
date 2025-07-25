@@ -200,7 +200,7 @@ export async function POST(request: NextRequest) {
             );
 
             const stripeInterval =
-              stripeSubscription.items.data[0]?.plan.interval;
+              stripeSubscription.items.data[0]?.price.recurring?.interval;
 
             invariant(stripeInterval, "Couldn't get interval from Stripe");
 
@@ -215,7 +215,12 @@ export async function POST(request: NextRequest) {
               status,
               interval,
               currentPeriodEndsAt: new Date(
-                stripeSubscription.current_period_end * 1000
+                // Effectively assume that we only have one subscription item per subscription.
+                // The overall current period ends at the earliest current period end timestamp
+                // for all of the subscription items.
+                stripeSubscription.items.data.sort(
+                  (a, b) => a.current_period_end - b.current_period_end
+                )[0]?.current_period_end ?? 0 * 1000
               ),
               cancelAt: stripeSubscription.cancel_at
                 ? new Date(stripeSubscription.cancel_at * 1000)
@@ -306,11 +311,11 @@ export async function POST(request: NextRequest) {
 
         case "invoice.paid": {
           const stripeInvoice = event.data.object;
-          const stripeSubscriptionId = isStripeSubscription(
-            stripeInvoice.subscription
-          )
-            ? stripeInvoice.subscription.id
-            : stripeInvoice.subscription;
+          const stripeSubscription =
+            stripeInvoice.parent?.subscription_details?.subscription ?? null;
+          const stripeSubscriptionId = isStripeSubscription(stripeSubscription)
+            ? stripeSubscription.id
+            : stripeSubscription;
           const stripeCustomerId =
             isStripeCustomer(stripeInvoice.customer) ||
             isStripeDeletedCustomer(stripeInvoice.customer)
@@ -409,20 +414,29 @@ export async function POST(request: NextRequest) {
               .execute();
           }
 
+          const priceId = line.pricing?.price_details?.price;
+
+          invariant(
+            priceId,
+            `Couldn't find price ID for invoice line item ${line.id} on invoice ${stripeInvoice.id}`
+          );
+
+          const price = await stripe.prices.retrieve(priceId);
+
           posthog.capture({
             distinctId: stripeCustomerEmail,
             event: "Stripe Invoice Paid",
             properties: {
               invoiceId: stripeInvoice.id,
               subscriptionId: stripeSubscriptionId,
-              tier: line.price?.metadata.tier,
-              interval: line.plan?.interval,
+              tier: price.metadata.tier,
+              interval: price.recurring?.interval,
               amount: line.amount,
-              amountExcludingTax: line.amount_excluding_tax,
+              amountExcludingTax:
+                line.amount -
+                (line.taxes?.reduce((sum, tax) => sum + tax.amount, 0) ?? 0),
               currency: line.currency,
-              planId: line.plan?.id,
-              planName: line.plan?.nickname,
-              priceId: line.price?.id,
+              priceId: price.id,
             },
           });
 
