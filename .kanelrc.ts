@@ -95,7 +95,7 @@ const fixNumeric = (path: string, lines: string[]) => {
     ) {
       return line.replace(
         "ColumnType<NumericPlaceholder, NumericPlaceholder, NumericPlaceholder>",
-        "ColumnType<number, string, string>"
+        "ColumnType<number, string | number, string | number>"
       );
     }
     if (
@@ -105,7 +105,7 @@ const fixNumeric = (path: string, lines: string[]) => {
     ) {
       return line.replace(
         "ColumnType<NumericPlaceholder | null, NumericPlaceholder | null, NumericPlaceholder | null>",
-        "ColumnType<number | null, string | null, string | null>"
+        "ColumnType<number | null, string | number | null, string | number | null>"
       );
     }
     if (
@@ -115,7 +115,7 @@ const fixNumeric = (path: string, lines: string[]) => {
     ) {
       return line.replace(
         "ColumnType<NumericPlaceholder, NumericPlaceholder | undefined, NumericPlaceholder>",
-        "ColumnType<number, string | undefined, string>"
+        "ColumnType<number, string | number | undefined, string | number | undefined>"
       );
     }
 
