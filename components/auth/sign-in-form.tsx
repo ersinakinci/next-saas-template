@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
-import { providerMap, signIn } from "@/services/auth";
+import { providerMap, signIn } from "@/services/auth.server";
 import { serverEnv } from "@/env/server";
 
 export function SignInForm({

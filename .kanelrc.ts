@@ -126,7 +126,7 @@ const fixNumeric = (path: string, lines: string[]) => {
 export default {
   connection: serverEnv.DATABASE_URL,
   preDeleteOutputFolder: true,
-  outputPath: "./services/db/schemas",
+  outputPath: "./services/db.server/schemas",
   customTypeMap: {
     "pg_catalog.tsvector": "string",
     "pg_catalog.bpchar": "string",

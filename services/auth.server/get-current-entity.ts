@@ -1,4 +1,4 @@
-import { auth } from "@/services/auth";
+import { auth } from "@/services/auth.server";
 import invariant from "tiny-invariant";
 
 export const getCurrentEntity = async () => {

@@ -5,7 +5,9 @@ import { logger } from "./logger";
 const noop = new Proxy(() => {}, {
   get: () => noop,
   apply: () => {
-    logger.error("Attempting to call Loops. Set LOOPS_API_KEY env var.");
+    logger.error(
+      "Attempting to call email marketing service. Set LOOPS_API_KEY env var."
+    );
   },
 });
 

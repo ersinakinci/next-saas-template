@@ -1,16 +1,16 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Resend from "next-auth/providers/resend";
 import Credentials from "next-auth/providers/credentials";
-import { KyselyAdapter } from "@/services/auth/kysely-adapter";
-import { db } from "@/services/db";
-import { posthog } from "@/services/posthog";
+import { KyselyAdapter } from "@/services/auth.server/kysely-adapter";
+import { db } from "@/services/db.server";
+import { analytics } from "@/services/analytics.server";
 import invariant from "tiny-invariant";
 import { UTCDateMini } from "@date-fns/utc";
-import { getUserTier } from "@/services/db/helpers/get-user-tier";
+import { getUserTier } from "@/services/db.server/helpers/get-user-tier";
 import { serverEnv } from "@/env/server";
 import { emailMarketing } from "@/services/email-marketing.server";
-import { getLastEntity } from "@/services/db/helpers/get-last-entity";
-import { UserId } from "@/services/db/schemas/public/User";
+import { getLastEntity } from "@/services/db.server/helpers/get-last-entity";
+import { UserId } from "@/services/db.server/schemas/public/User";
 import { Provider } from "@auth/core/providers";
 import { userOnboardingSchema } from "@/schemas/schema.user-onboarding";
 import { edgeConfig } from "./edge-config";
@@ -141,7 +141,7 @@ export const authConfig = {
         );
       }
 
-      posthog.capture({
+      analytics.capture({
         distinctId: user.email,
         event: "$set",
         properties: {
@@ -157,7 +157,7 @@ export const authConfig = {
         },
       });
 
-      posthog.capture({
+      analytics.capture({
         distinctId: user.email,
         event: isNewUser ? "User Created" : "User Signed In",
       });

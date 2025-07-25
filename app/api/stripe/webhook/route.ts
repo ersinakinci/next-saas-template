@@ -1,14 +1,14 @@
 import invariant from "tiny-invariant";
-import { getInterval, stripe } from "@/services/stripe/stripe.server";
-import { DBClient, db } from "@/services/db";
+import { getInterval, payments } from "@/services/payments.server";
+import { DBClient, db } from "@/services/db.server";
 import { sql } from "kysely";
-import { isSubscriptionTier } from "@/services/db/helpers/is-subscription-tier";
+import { isSubscriptionTier } from "@/services/db.server/helpers/is-subscription-tier";
 import Stripe from "stripe";
-import { cache } from "@/services/cache";
-import { posthog } from "@/services/posthog";
+import { cache } from "@/services/cache.server";
+import { analytics } from "@/services/analytics.server";
 import { serverEnv } from "@/env/server";
 import { NextRequest } from "next/server";
-import { Subscription } from "@/services/db/schemas/public/Subscription";
+import { Subscription } from "@/services/db.server/schemas/public/Subscription";
 import { logger } from "@/services/logger";
 
 const isStripeSubscription = (
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
 
   // Check the event signature.
   try {
-    event = stripe.webhooks.constructEvent(
+    event = payments.webhooks.constructEvent(
       rawEvent,
       sig,
       serverEnv.STRIPE_ENDPOINT_SECRET
@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
               .execute();
           }
 
-          posthog.capture({
+          analytics.capture({
             distinctId: user.email,
             event: "Stripe Customer Created",
             properties: {
@@ -163,7 +163,7 @@ export async function POST(request: NextRequest) {
           if (subscription) await deleteSubscription(db, subscription);
 
           if (stripeCustomer.email)
-            posthog.capture({
+            analytics.capture({
               distinctId: stripeCustomer.email,
               event: "Stripe Customer Deleted",
               properties: {
@@ -180,10 +180,10 @@ export async function POST(request: NextRequest) {
           // Always fetch subscription from Stripe to ensure we have the latest data.
           // It's inefficient, but it's the only way to ensure we have the latest data
           // since Stripe events can come out of order.
-          const stripeSubscription = await stripe.subscriptions.retrieve(
+          const stripeSubscription = await payments.subscriptions.retrieve(
             event.data.object.id
           );
-          const stripeCustomer = await stripe.customers.retrieve(
+          const stripeCustomer = await payments.customers.retrieve(
             stripeSubscription.customer.toString()
           );
 
@@ -272,7 +272,7 @@ export async function POST(request: NextRequest) {
                 .execute();
             }
 
-            posthog.capture({
+            analytics.capture({
               distinctId: user.email,
               event:
                 event.type === "customer.subscription.created"
@@ -297,11 +297,11 @@ export async function POST(request: NextRequest) {
 
           const stripeCustomer =
             typeof stripeSubscription.customer === "string"
-              ? await stripe.customers.retrieve(stripeSubscription.customer)
+              ? await payments.customers.retrieve(stripeSubscription.customer)
               : stripeSubscription.customer;
 
           if (!isStripeDeletedCustomer(stripeCustomer) && stripeCustomer.email)
-            posthog.capture({
+            analytics.capture({
               distinctId: stripeCustomer.email,
               event: "Stripe Subscription Deleted",
               properties: {
@@ -330,7 +330,9 @@ export async function POST(request: NextRequest) {
           let stripeCustomerEmail = stripeInvoice.customer_email;
 
           if (!stripeCustomerEmail) {
-            const customer = await stripe.customers.retrieve(stripeCustomerId);
+            const customer = await payments.customers.retrieve(
+              stripeCustomerId
+            );
 
             if (isStripeCustomer(customer)) {
               stripeCustomerEmail = customer.email;
@@ -424,9 +426,9 @@ export async function POST(request: NextRequest) {
             `Couldn't find price ID for invoice line item ${line.id} on invoice ${stripeInvoice.id}`
           );
 
-          const price = await stripe.prices.retrieve(priceId);
+          const price = await payments.prices.retrieve(priceId);
 
-          posthog.capture({
+          analytics.capture({
             distinctId: stripeCustomerEmail,
             event: "Stripe Invoice Paid",
             properties: {

@@ -9,12 +9,12 @@ const noop = new Proxy(() => {}, {
   get: () => noop,
   apply: () => {
     logger.error(
-      "Attempting to call PostHog. Set POSTHOG_API_KEY, NEXT_PUBLIC_POSTHOG_HOST, and NEXT_PUBLIC_POSTHOG_KEY env vars."
+      "Attempting to call analytics service. Set POSTHOG_API_KEY, NEXT_PUBLIC_POSTHOG_HOST, and NEXT_PUBLIC_POSTHOG_KEY env vars."
     );
   },
 });
 
-export const posthog =
+export const analytics =
   serverEnv.POSTHOG_API_KEY &&
   clientEnv.NEXT_PUBLIC_POSTHOG_HOST &&
   clientEnv.NEXT_PUBLIC_POSTHOG_KEY

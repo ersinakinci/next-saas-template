@@ -1,13 +1,13 @@
 import { loadStripe, type Stripe } from "@stripe/stripe-js";
 import { clientEnv } from "@/env/client";
-import { logger } from "../logger";
+import { logger } from "./logger";
 
 const noop = new Promise(
   new Proxy(() => {}, {
     get: () => noop,
     apply: () => {
       logger.error(
-        "Attempting to call Stripe client service. Set NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY env var."
+        "Attempting to call payments client service. Set NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY env var."
       );
     },
   })

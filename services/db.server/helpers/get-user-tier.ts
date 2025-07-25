@@ -1,9 +1,9 @@
 import "server-only";
 
 import { isPast } from "date-fns";
-import { DBClient } from "@/services/db";
-import { SubscriptionTier } from "@/services/db/schemas/public/SubscriptionTier";
-import { UserId } from "@/services/db/schemas/public/User";
+import { DBClient } from "@/services/db.server";
+import { SubscriptionTier } from "@/services/db.server/schemas/public/SubscriptionTier";
+import { UserId } from "@/services/db.server/schemas/public/User";
 
 export const getUserTier = async (
   db: DBClient,

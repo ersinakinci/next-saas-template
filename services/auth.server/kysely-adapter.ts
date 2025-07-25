@@ -27,10 +27,10 @@ import {
   type VerificationToken,
   isDate,
 } from "@auth/core/adapters";
-import { User, UserId } from "@/services/db/schemas/public/User";
-import { DBClient, transact } from "@/services/db";
-import { NewEntity } from "@/services/db/schemas/public/Entity";
-import { Entity } from "@/services/db/schemas/public/Entity";
+import { User, UserId } from "@/services/db.server/schemas/public/User";
+import { DBClient, transact } from "@/services/db.server";
+import { NewEntity } from "@/services/db.server/schemas/public/Entity";
+import { Entity } from "@/services/db.server/schemas/public/Entity";
 import invariant from "tiny-invariant";
 
 export interface Database {

@@ -1,5 +1,5 @@
-import { DBClient } from "@/services/db";
-import { UserId } from "@/services/db/schemas/public/User";
+import { DBClient } from "@/services/db.server";
+import { UserId } from "@/services/db.server/schemas/public/User";
 
 export const getLastEntity = async ({
   db,
