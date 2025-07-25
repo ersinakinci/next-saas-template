@@ -22,7 +22,7 @@ export const serverEnv = createEnv({
     AUTH_GOOGLE_ID: z.string().optional(),
     AUTH_GOOGLE_SECRET: z.string().optional(),
     AUTH_SECRET: z.string(),
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
     LOOPS_API_KEY: devOptional(z.string()),
     LOOPS_USERS_LIST_ID: devOptional(z.string()),
     NODE_ENV: z.enum(["development", "test", "production"]),
