@@ -27,12 +27,12 @@ PG.defaults.parseInputDatesAsUTC = true;
 
 // Map numeric to number via BigNumber.
 PG.types.setTypeParser(1700, "text", (value) =>
-  null ? null : BigNumber(value).toNumber()
+  value === null ? null : BigNumber(value).toNumber()
 );
 
 // Map bigint/int8 to number via BigNumber.
 PG.types.setTypeParser(20, "text", (value) =>
-  null ? null : BigNumber(value).toNumber()
+  value === null ? null : BigNumber(value).toNumber()
 );
 
 // Map date to string.
