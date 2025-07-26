@@ -42,7 +42,8 @@ npm run dev
 - 📧 Email
   - Marketing: [Loops](https://loops.so)
   - Transactional: [Resend](https://resend.com)
-- 🚦 Testing: [Vitest](https://vitest.dev/)
+- 🚦 Testing: [Vitest](https://vitest.dev)
+- 🐞 Error reporting: [Sentry](https://sentry.io)
 - 🚀 Deployment: [Vercel](https://vercel.com)
 
 ### Utils
@@ -59,10 +60,11 @@ npm run dev
 
 - You'll need to have a Postgres database set up.
 - Third-party services:
-  - [Loops](https://loops.so)
   - [Google API](https://console.cloud.google.com)
+  - [Loops](https://loops.so)
   - [PostHog](https://posthog.com)
   - [Resend](https://resend.com)
+  - [Sentry](https://sentry.io)
   - [Stripe](https://stripe.com)
 
 ### Environment variables
@@ -85,11 +87,15 @@ You'll need to set the following environment variables in your `.env.local` file
   - EU (for GDPR compliance): `https://eu.i.posthog.com`
   - US: `https://us.i.posthog.com`
 - `NEXT_PUBLIC_POSTHOG_KEY`: The API key for the PostHog API.
+- `NEXT_PUBLIC_SENTRY_DSN`: The DSN for your Sentry project.
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: The publishable key for the Stripe API.
 - `NODE_ENV`: The environment to use (`development`, `test`, or `production`).
   - Use `development` for local development.
 - `POSTHOG_API_KEY`: The API key for the PostHog API.
 - `RESEND_API_KEY`: The API key for the Resend API.
+- `SENTRY_AUTH_TOKEN`: Your Sentry auth token for uploading source maps.
+- `SENTRY_ORG`: Your app's Sentry organization.
+- `SENTRY_PROJECT`: Your app's Sentry project.
 - `STRIPE_ENDPOINT_SECRET`: The endpoint secret for the Stripe webhook.
 - `STRIPE_SECRET_KEY`: The secret key for the Stripe API.
 
