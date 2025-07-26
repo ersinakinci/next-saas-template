@@ -168,3 +168,8 @@ export const authConfig = {
 
 export const { handlers, signIn, signOut, auth, unstable_update } =
   NextAuth(authConfig);
+
+export {
+  getCurrentEntity,
+  getCurrentEntityUnauthenticated,
+} from "./get-current-entity";
