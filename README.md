@@ -42,6 +42,7 @@ npm run dev
 - 📧 Email
   - Marketing: [Loops](https://loops.so)
   - Transactional: [Resend](https://resend.com)
+- 🚦 Testing: [Vitest](https://vitest.dev/)
 - 🚀 Deployment: [Vercel](https://vercel.com)
 
 ### Utils
@@ -102,7 +103,6 @@ You'll need to set the following environment variables in your `.env.local` file
 
 - [ ] Docs
 - [ ] Better error handling
-- [ ] Testing
 - [ ] App shell
 - [ ] Navigation
 - [ ] React Query
