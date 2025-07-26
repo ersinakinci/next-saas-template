@@ -69,7 +69,7 @@ export function PublicNavHeader() {
             <SheetContent side="right" className="pr-0">
               <MobileLink
                 href="/"
-                className="flex items-center"
+                className="flex items-center m-6"
                 onOpenChange={setIsOpen}
               >
                 <div className="flex items-center">
@@ -116,7 +116,7 @@ export function PublicNavHeader() {
           </Sheet>
         </div>
         <div className="hidden md:flex md:flex-1">
-          <NavigationMenu>
+          <NavigationMenu className="ml-4">
             <NavigationMenuList>
               {navigationItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
