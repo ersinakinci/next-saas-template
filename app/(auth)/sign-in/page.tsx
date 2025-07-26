@@ -1,4 +1,4 @@
-import { SignInForm } from "@/components/auth/sign-in-form";
+import { SignInForm } from "@/services/auth/components/sign-in-form";
 
 export default async function SignInPage({
   searchParams,

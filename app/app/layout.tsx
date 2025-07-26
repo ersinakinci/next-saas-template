@@ -1,9 +1,9 @@
-import { ReactQueryProvider } from "@/components/providers/react-query";
+import { QueryProvider } from "@/services/query/components/query-provider";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ReactQueryProvider>
+    <QueryProvider>
       <div>{children}</div>
-    </ReactQueryProvider>
+    </QueryProvider>
   );
 }

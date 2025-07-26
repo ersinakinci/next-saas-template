@@ -1,7 +1,7 @@
 import { defineConfig } from "kysely-ctl";
 import { PostgresDialect } from "kysely";
 import pg from "pg";
-import { serverEnv } from "./env/server";
+import { serverEnv } from "./services/env/api.server";
 
 const { Pool } = pg;
 
@@ -12,6 +12,6 @@ export default defineConfig({
     }),
   }),
   migrations: {
-    migrationFolder: "./services/db.server/migrations",
+    migrationFolder: "./services/db/migrations",
   },
 });

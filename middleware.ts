@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import NextAuth from "next-auth";
-import { edgeConfig } from "@/services/auth.server/edge-config";
+import { edgeConfig } from "@/services/auth/api.server/edge-config";
 
 const middleware = NextAuth(edgeConfig).auth(async (req) => {
   if (

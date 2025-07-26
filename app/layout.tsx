@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { PostHogProvider } from "@/components/providers/posthog";
+import { AnalyticsProvider } from "@/services/analytics/components/analytics-provider";
 import { SessionProvider } from "next-auth/react";
-import { auth } from "@/services/auth.server";
+import { auth } from "@/services/auth/api.server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,13 +29,13 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <PostHogProvider>
+      <AnalyticsProvider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <SessionProvider session={session}>{children}</SessionProvider>
         </body>
-      </PostHogProvider>
+      </AnalyticsProvider>
     </html>
   );
 }

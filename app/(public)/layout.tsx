@@ -1,4 +1,4 @@
-import { PublicNavHeader } from "@/components/nav/public-nav-header";
+import { PublicNavHeader } from "@/application/nav/components/public-nav-header";
 
 export default function PublicLayout({
   children,

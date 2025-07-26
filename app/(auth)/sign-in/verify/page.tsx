@@ -1,4 +1,4 @@
-import { VerifyRequest } from "@/components/auth/verify-request";
+import { VerifyRequest } from "@/services/auth/components/verify-request";
 
 export default function VerifyPage() {
   return (

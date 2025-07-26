@@ -1,7 +1,7 @@
 import { Output } from "kanel";
 import { makeKyselyHook } from "kanel-kysely";
 import { camelCase } from "lodash-es";
-import { serverEnv } from "./env/server";
+import { serverEnv } from "./services/env/api.server";
 
 const camelCaseHook = (output: Output): Output =>
   Object.fromEntries(
