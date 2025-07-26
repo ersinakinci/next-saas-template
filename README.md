@@ -105,4 +105,3 @@ You'll need to set the following environment variables in your `.env.local` file
 - [ ] Better error handling
 - [ ] App shell
 - [ ] Navigation
-- [ ] React Query
