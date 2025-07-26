@@ -52,17 +52,23 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.15",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20",
     "@types/pg": "^8.15.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^26.1.0",
     "kanel": "^3.14.1",
     "kysely-ctl": "^0.14.0",
     "postcss": "^8",
     "tailwindcss": "^4",
     "tailwindcss-animate": "^1.0.7",
     "tsx": "^4.20.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
   }
 }
