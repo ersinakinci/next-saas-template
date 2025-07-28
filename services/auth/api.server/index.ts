@@ -8,7 +8,7 @@ import invariant from "tiny-invariant";
 import { UTCDateMini } from "@date-fns/utc";
 import { getUserTier } from "@/services/db/helpers/get-user-tier";
 import { serverEnv } from "@/services/env/api.server";
-import { emailMarketing } from "@/services/email/api.marketing.server";
+import { emailMarketing } from "@/services/email/marketing/api.server";
 import { getLastEntity } from "@/services/db/helpers/get-last-entity";
 import { UserId } from "@/services/db/schemas/public/User";
 import { Provider } from "@auth/core/providers";

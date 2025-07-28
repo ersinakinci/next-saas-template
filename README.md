@@ -24,8 +24,8 @@ npm run dev
 
 - 🧱 Framework: [Next.js](https://nextjs.org)
 - 🎨 CSS: [Tailwind CSS](https://tailwindcss.com)
-  - [Typography](https://tailwindcss.com/docs/typography-plugin)
-  - [Animate](https://tailwindcss.com/docs/animate-plugin)
+  - Typography: [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
+  - Animation: [tw-animate-css](https://github.com/Wombosvideo/tw-animate-css)
 - 🖱️ UI: [Shadcn UI](https://ui.shadcn.com)
 - ⭐️ Icons: [Lucide](https://lucide.dev)
 - 🗄️ Database: [Postgres](https://www.postgresql.org)

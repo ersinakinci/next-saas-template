@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
+    "typecheck": "tsc --noEmit",
     "db:migrate:latest": "kysely migrate:latest",
     "db:migrate:make": "kysely migrate:make",
     "db:migrate:up": "kysely migrate:up",
